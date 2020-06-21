@@ -68,10 +68,28 @@ class SQLite_Helper (context : Context) : SQLiteOpenHelper(
     }
 
     //READ INFORMATION FROM DB
-    fun getStudents():Cursor?{
+    fun getStudents(context:Context) : ArrayList<Student>{
         //ACCESS DB READABLE
         val db = this.readableDatabase
-        return db.rawQuery(SELECT_TABLE, null)
+        val cursor = db.rawQuery(SELECT_TABLE, null)
+
+        val students = ArrayList<Student>()
+        if(cursor.count == 0){
+            Toast.makeText(context, "Null", Toast.LENGTH_SHORT).show()
+        }else {
+            while (cursor.moveToNext()) {
+                //CREATE NEW STUDENTS DATA (LOOPING)
+                val studs = Student()
+                studs.name = cursor.getString(cursor.getColumnIndex(TABLE_COLUMN_NAME))
+                studs.gender = cursor.getString(cursor.getColumnIndex(TABLE_COLUMN_GENDER))
+                studs.phone = cursor.getString(cursor.getColumnIndex(TABLE_COLUMN_PHONE))
+
+                students.add(studs)
+            }
+        }
+
+        cursor.close()
+        return students
     }
 
     companion object{
@@ -79,10 +97,10 @@ class SQLite_Helper (context : Context) : SQLiteOpenHelper(
         const val DATABASE_VERSION = 1
         const val DATABASE_NAME = "dbStudents"
         const val TABLE_NAME = "tbStudents"
-        const val TABLE_COLUMN_ID = "ID";
-        const val TABLE_COLUMN_NAME = "Name";
-        const val TABLE_COLUMN_GENDER = "Gender";
-        const val TABLE_COLUMN_PHONE = "Phone";
+        const val TABLE_COLUMN_ID = "ID"
+        const val TABLE_COLUMN_NAME = "Name"
+        const val TABLE_COLUMN_GENDER = "Gender"
+        const val TABLE_COLUMN_PHONE = "Phone"
     }
 
 }

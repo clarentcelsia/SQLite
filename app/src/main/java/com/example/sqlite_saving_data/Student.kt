@@ -8,13 +8,19 @@ class Student {
     var gender : String? = null
     var phone : String? = null
 
-    constructor(id: String, name: String?, gender: String?, phone: String?) {
-        this.id = id
-        this.name = name
-        this.gender = gender
-        this.phone = phone
-    }
 
+//    constructor(id: String, name: String?, gender: String?, phone: String?) {
+//        this.id = id
+//        this.name = name
+//        this.gender = gender
+//        this.phone = phone
+//    }
+
+//    constructor(name: String?, gender: String?, phone: String?) {
+//        this.name = name
+//        this.gender = gender
+//        this.phone = phone
+//    }
 
 }
 

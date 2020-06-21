@@ -35,7 +35,12 @@ class MainActivity : AppCompatActivity() {
         val genders = etGender?.text.toString()
         val phones = etPhone?.text.toString()
 
-        val students = Student(BaseColumns._ID,names, genders, phones)
+        val students = Student()
+        students.id = BaseColumns._ID
+        students.name = names
+        students.gender = genders
+        students.phone = phones
+
         submit.insertSudents(students)
         createSnackbar(fabAdd)
     }
