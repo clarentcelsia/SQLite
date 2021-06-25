@@ -25,5 +25,5 @@ class Student {
 }
 
 //var = variable bisa diganti
-//val = final
+//val = read-only
 //lateinit = nullable type
